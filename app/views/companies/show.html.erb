@@ -46,7 +46,10 @@
 						  <strong>Kontrakt slutter</strong>
 						  <%= m.end_date %>
 						</p>
-						<%= link_to "Rediger avtale", edit_company_mat_path(m) %> 
+            <i class="far fa-edit"></i>
+						<%= link_to "Edit contract", edit_company_mat_path(m) %> 
+            <i class="far fa-minus-square"></i>
+            <%= link_to 'Delete', m, method: :delete, data: { confirm: 'Are you sure?' } %>
                   	</div>
                     
                   </div>
