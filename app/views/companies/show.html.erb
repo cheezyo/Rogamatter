@@ -24,37 +24,39 @@
             <!-- Area Chart -->
             <div class="col-xl-8 col-lg-7">
               <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <div class="card-header py-3">
+                  
                   <h6 class="m-0 font-weight-bold text-primary"><%= m.amount %>  matter type  <%= m.mat.name %> </h6>
 
               </div>
               <div class="card-body">
-                  <div class="">
-                  	<div class="chartjs-size-monitor">
                   		<strong>Byttes hver </strong>
-						  <%= m.change_day %>, <%= m.change %> ganger i måneden
-						  
-						</p>
+        						  <%= m.change_day %>, <%= m.change %> ganger i måneden
+        						  
+        						</p>
 
-						<p>
-						  <strong>Kontrak starter</strong>
-						  <%= m.start_date %>
-						</p>
+        						<p>
+        						  <strong>Kontrak starter</strong>
+        						  <%= m.start_date %>
+        						</p>
 
-						<p>
-						  <strong>Kontrakt slutter</strong>
-						  <%= m.end_date %>
-						</p>
-            <i class="far fa-edit"></i>
-						<%= link_to "Edit contract", edit_company_mat_path(m) %> 
-            <i class="far fa-minus-square"></i>
-            <%= link_to 'Delete', m, method: :delete, data: { confirm: 'Are you sure?' } %>
-                  	</div>
+        						<p>
+        						  <strong>Kontrakt slutter</strong>
+        						  <%= m.end_date %>
+        						</p>
                     
-                  </div>
-                </div>
+            	</div>
+              <div class="card-footer">
+                <i class="far fa-edit"></i>
+                <%= link_to "Edit contract", edit_company_mat_path(m) %> 
+                <i class="far fa-minus-square"></i>
+                <%= link_to 'Delete', m, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </div>
+                    
+                  
           </div>
       </div>
   </div>
  <% end -%>
+
+ 
