@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :mats
   
   resources :company_mats
- root :to => 'pages#index'
+ root :to => 'pages#dashboard'
   resources :companies
 
 resources :pages do 
