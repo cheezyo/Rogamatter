@@ -20,19 +20,20 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <%= link_to "/pages/dashboard" do %>
+      <span class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
         <div class="sidebar-brand-text mx-3">Rogamatter <sup>admin</sup></div>
-      </a>
-
+      </span>
+     <% end -%>
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <%= link_to companies_path do %>
+        <%= link_to "/pages/dashboard" do %>
         <span class="nav-link" href="index.html">
           <i class="fas fa-fw fa-tachometer-alt"></i>
 
