@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Mat type:</strong>
+  <%= @mat.mat_type %>
+</p>
+
+<p>
+  <strong>Mat size:</strong>
+  <%= @mat.mat_size %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @mat.comment %>
+</p>
+
+<%= link_to 'Edit', edit_mat_path(@mat) %> |
+<%= link_to 'Back', mats_path %>

@@ -1,9 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @company.name %>
-</p>
+<h1>
+  <%= @company.name %> 
+</h1>
+<%= link_to 'Rediger', edit_company_path(@company) %> |
+<%= link_to "Legg til ny avtale", new_company_mat_path %>
+<hr/>
+<% @company.company_mats.each do |m| %>
+	<h3>
+ 
+   		 <%= m.amount %>  matter type  <%= m.mat.name %> 
+	</h3>
 
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+	<p>
+	  <strong>Byttes hver </strong>
+	  <%= m.change_day %>, <%= m.change %> ganger i måneden
+	  
+	</p>
+
+	<p>
+	  <strong>Kontrak starter</strong>
+	  <%= m.start_date %>
+	</p>
+
+	<p>
+	  <strong>Kontrakt slutter</strong>
+	  <%= m.end_date %>
+	</p>
+	<%= link_to "Rediger avtale", edit_company_mat_path(m) %> 
+	<hr/>
+ <% end -%>
+
+

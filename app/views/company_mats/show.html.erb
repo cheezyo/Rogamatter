@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+<h1>
+  <%= link_to @company_mat.company.name, @company_mat.company %>
+</h1>
+
+<h3>
+ 
+   <strong> <%= @company_mat.amount %> </strong> matter type <strong> <%= @company_mat.mat.name %> </strong>
+</h3>
+
+<p>
+  <strong>Byttes hver </strong>
+  <%= @company_mat.change_day %>, <%= @company_mat.change %> ganger i måneden
+  
+</p>
+
+<p>
+  <strong>Kontrak starter</strong>
+  <%= @company_mat.start_date %>
+</p>
+
+<p>
+  <strong>Kontrakt slutter</strong>
+  <%= @company_mat.end_date %>
+</p>
+
+
+
+
+
+
+<%= link_to 'Edit', edit_company_mat_path(@company_mat) %> |
+<%= link_to 'Back', company_mats_path %>

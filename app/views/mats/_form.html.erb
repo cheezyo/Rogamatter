@@ -1,0 +1,32 @@
+<%= form_with(model: mat, local: true) do |form| %>
+  <% if mat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mat.errors.count, "error") %> prohibited this mat from being saved:</h2>
+
+      <ul>
+        <% mat.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label "Matte type" %>
+    <%= form.select(:mat_type, mat.category.map {|c| [ "#{c}", c] } ) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mat_size %>
+    <%= form.text_field :mat_size %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comment %>
+    <%= form.text_area :comment %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

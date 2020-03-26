@@ -1,0 +1,53 @@
+<%= form_with(model: company_mat, local: true) do |form| %>
+  <% if company_mat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(company_mat.errors.count, "error") %> prohibited this company_mat from being saved:</h2>
+
+      <ul>
+        <% company_mat.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+
+  <div class="field">
+    <%= form.label "Firma" %>
+    <%= form.collection_select :company_id, Company.all, :id, :name %>
+  </div>
+   <div class="field">
+    <%= form.label "Kontrakt start" %>
+    <%= form.date_select :start_date %>
+  </div>
+  <div class="field">
+    <%= form.label "Kontrakt slutt" %>
+    <%= form.date_select :end_date %>
+  </div>
+
+   <div class="field">
+    <%= form.label "Matte type" %>
+    <%= form.collection_select :mat_id, Mat.all, :id, :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Bytter per måned" %>
+    <%= form.select( :change, company_mat.change_interval.map { |c| ["#{c}", c] } ) %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Bytte dag" %>
+    <%= form.select( :change_day, company_mat.day.map { |c| ["#{c}", c] } ) %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Antall like matter" %>
+    <%= form.number_field :amount %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Lagre" %>
+  </div>
+<% end %>

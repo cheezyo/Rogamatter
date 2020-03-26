@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Company Mats</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Change</th>
+      <th>Change day</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Company</th>
+      <th>Mat</th>
+      <th>Amount</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @company_mats.each do |company_mat| %>
+      <tr>
+        <td><%= company_mat.change %></td>
+        <td><%= company_mat.change_day %></td>
+        <td><%= company_mat.start_date %></td>
+        <td><%= company_mat.end_date %></td>
+        <td><%= company_mat.company_id %></td>
+        <td><%= company_mat.mat_id %></td>
+        <td><%= company_mat.amount %></td>
+        <td><%= link_to 'Show', company_mat %></td>
+        <td><%= link_to 'Edit', edit_company_mat_path(company_mat) %></td>
+        <td><%= link_to 'Destroy', company_mat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Company Mat', new_company_mat_path %>

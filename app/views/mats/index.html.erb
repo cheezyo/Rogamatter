@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mats</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Mat type</th>
+      <th>Mat size</th>
+      <th>Comment</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mats.each do |mat| %>
+      <tr>
+        <td><%= mat.mat_type %></td>
+        <td><%= mat.mat_size %></td>
+        <td><%= mat.comment %></td>
+        <td><%= link_to 'Show', mat %></td>
+        <td><%= link_to 'Edit', edit_mat_path(mat) %></td>
+        <td><%= link_to 'Destroy', mat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mat', new_mat_path %>
