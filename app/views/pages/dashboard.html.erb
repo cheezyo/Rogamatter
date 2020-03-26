@@ -7,13 +7,13 @@
 </div>
 <hr/>
 
-
+<div class="row">
 <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Deliveries today</div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Deliveries made today</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
                     </div>
                     <div class="col-auto">
@@ -24,3 +24,108 @@
                 </div>
               </div>
             </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Deliveries remaining</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">15</div>
+                    </div>
+                    <div class="col-auto">
+                      
+                      <i class="fas fa-truck fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Deliveries for tomorrow</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">29</div>
+                    </div>
+                    <div class="col-auto">
+                      
+                      <i class="fas fa-truck fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Deliveries for this week</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">150</div>
+                    </div>
+                    <div class="col-auto">
+                      
+                      <i class="fas fa-truck fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+</div>
+
+<hr/>
+
+	
+<div class="col-xl-3 col-md-6 mb-4">
+	<form>
+	  <div class="form-group">
+	    <label for="exampleInputEmail1">From date</label>
+	    <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Choose start date">
+	  </div>
+	</form>
+</div>
+<div class="col-xl-12 col-md-6 mb-4">           
+	<!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">All deliveries <%= DateTime.now.strftime("%d-%m-%Y") %></h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Interval</th>
+                      <th>Day</th>
+                      <th>Start date</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Name</th>
+                      <th>Interval</th>
+                      <th>Day</th>
+                      <th>Start date</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+
+                    <% CompanyMat.all.each do |m| %>
+                    <tr>
+                
+                      <td><%= link_to m.company.name + " " + m.mat.name, m %></td>
+                      <td><%= link_to m.change, m %></td>
+                      <td><%= link_to m.change_day, m %></td>
+                      <td><%= link_to m.start_date, m %></td>
+                   
+                    </tr>
+                  <% end %>
+                 
+                    </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+</div>
