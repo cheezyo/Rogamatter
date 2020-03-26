@@ -1,34 +1,57 @@
 <p id="notice"><%= notice %></p>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800"> <%= @company.name %> </h1>
 
-<h1>
-  <%= @company.name %> 
-</h1>
-<%= link_to 'Rediger', edit_company_path(@company) %> |
-<%= link_to "Legg til ny avtale", new_company_mat_path %>
+    <div class="row">
+	    <div class="col">
+	    	<i class="far fa-edit"></i>
+	           <%= link_to 'Rediger', edit_company_path(@company) %>     
+
+	     	 <i class="far fa-plus-square"></i>
+			   <%= link_to "Legg til ny avtale", new_company_mat_path %>
+		</div> 
+   	</div>
+</div>
 <hr/>
+
+
+
+<!-- Content Row -->
 <% @company.company_mats.each do |m| %>
-	<h3>
- 
-   		 <%= m.amount %>  matter type  <%= m.mat.name %> 
-	</h3>
+          <div class="row">
 
-	<p>
-	  <strong>Byttes hver </strong>
-	  <%= m.change_day %>, <%= m.change %> ganger i måneden
-	  
-	</p>
+            <!-- Area Chart -->
+            <div class="col-xl-8 col-lg-7">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary"><%= m.amount %>  matter type  <%= m.mat.name %> </h6>
 
-	<p>
-	  <strong>Kontrak starter</strong>
-	  <%= m.start_date %>
-	</p>
+              </div>
+              <div class="card-body">
+                  <div class="">
+                  	<div class="chartjs-size-monitor">
+                  		<strong>Byttes hver </strong>
+						  <%= m.change_day %>, <%= m.change %> ganger i måneden
+						  
+						</p>
 
-	<p>
-	  <strong>Kontrakt slutter</strong>
-	  <%= m.end_date %>
-	</p>
-	<%= link_to "Rediger avtale", edit_company_mat_path(m) %> 
-	<hr/>
+						<p>
+						  <strong>Kontrak starter</strong>
+						  <%= m.start_date %>
+						</p>
+
+						<p>
+						  <strong>Kontrakt slutter</strong>
+						  <%= m.end_date %>
+						</p>
+						<%= link_to "Rediger avtale", edit_company_mat_path(m) %> 
+                  	</div>
+                    
+                  </div>
+                </div>
+          </div>
+      </div>
+  </div>
  <% end -%>
-
-
