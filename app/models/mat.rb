@@ -5,8 +5,8 @@ class Mat < ApplicationRecord
 
 
     def init
-      self.sold  ||= 0.0 
-      self.inventory ||= 0.0
+      self.sold  ||= 0
+      self.inventory ||= 0
   end
 
 	def category 
