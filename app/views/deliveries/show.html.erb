@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Klass:</strong>
+  <%= @delivery.klass %>
+</p>
+
+<p>
+  <strong>Klass:</strong>
+  <%= @delivery.klass_id %>
+</p>
+
+<p>
+  <strong>Pack date:</strong>
+  <%= @delivery.pack_date %>
+</p>
+
+<p>
+  <strong>Delivery:</strong>
+  <%= @delivery.delivery %>
+</p>
+
+<p>
+  <strong>Delivered date:</strong>
+  <%= @delivery.delivered_date %>
+</p>
+
+<p>
+  <strong>Change amount:</strong>
+  <%= @delivery.change_amount %>
+</p>
+
+<p>
+  <strong>Notify:</strong>
+  <%= @delivery.notify %>
+</p>
+
+<p>
+  <strong>Commet:</strong>
+  <%= @delivery.commet_id %>
+</p>
+
+<%= link_to 'Edit', edit_delivery_path(@delivery) %> |
+<%= link_to 'Back', deliveries_path %>

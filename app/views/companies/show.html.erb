@@ -9,7 +9,7 @@
 	           <%= link_to 'Rediger', edit_company_path(@company) %>     
 
 	     	 <i class="far fa-plus-square"></i>
-			   <%= link_to "Legg til ny avtale", new_company_mat_path %>
+			   <%= link_to "Legg til ny avtale", "/pages/new_contracts?company_id=" + @company.id.to_s %>
 		</div> 
    	</div>
 </div>

@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_26_151710) do
+ActiveRecord::Schema.define(version: 2020_03_27_135648) do
+
+  create_table "comments", force: :cascade do |t|
+    t.string "klass"
+    t.integer "klass_id"
+    t.text "comment"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
@@ -30,12 +39,36 @@ ActiveRecord::Schema.define(version: 2020_03_26_151710) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "deliveries", force: :cascade do |t|
+    t.string "klass"
+    t.integer "klass_id"
+    t.date "pack_date"
+    t.date "delivery"
+    t.datetime "delivered_date"
+    t.integer "change_amount"
+    t.boolean "notify"
+    t.integer "commet_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "delivered"
+  end
+
+  create_table "mat_inventories", force: :cascade do |t|
+    t.integer "company_mat_id"
+    t.integer "mat_id"
+    t.integer "sold"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "mats", force: :cascade do |t|
     t.string "mat_type"
     t.string "mat_size"
     t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "inventory"
+    t.integer "sold"
   end
 
 end

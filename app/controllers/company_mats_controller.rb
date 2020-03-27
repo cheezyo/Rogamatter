@@ -1,4 +1,4 @@
-class CompanyMatsController < ApplicationController
+  class CompanyMatsController < ApplicationController
   before_action :set_company_mat, only: [:show, :edit, :update, :destroy]
 
   # GET /company_mats
@@ -15,6 +15,10 @@ class CompanyMatsController < ApplicationController
   # GET /company_mats/new
   def new
     @company_mat = CompanyMat.new
+
+    if params[:company_id].present?
+      @company_mat.company_id = params[:company_id].to_i
+    end
   end
 
   # GET /company_mats/1/edit
@@ -54,6 +58,9 @@ class CompanyMatsController < ApplicationController
   # DELETE /company_mats/1
   # DELETE /company_mats/1.json
   def destroy
+    deliveries = Delivery.where(klass: @company_mat.class.name, klass_id: @company_mat.id ).each do |d|
+      d.destroy
+    end
     @company_mat.destroy
     respond_to do |format|
       format.html { redirect_to company_mats_url, notice: 'Company mat was successfully destroyed.' }

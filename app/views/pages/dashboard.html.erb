@@ -13,8 +13,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Deliveries made today</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                      <div class="text-md font-weight-bold text-success text-uppercase mb-1">Deliveries made today</div>
+                      <div class="h3 mb-0 font-weight-bold text-gray-800"><%= @today.count %></div>
                     </div>
                     <div class="col-auto">
                       
@@ -29,8 +29,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Deliveries remaining</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">15</div>
+                      <div class="text-md font-weight-bold text-success text-uppercase mb-1">Deliveries remaining</div>
+                      <div class="h3 mb-0 font-weight-bold text-gray-800"><%= @today_remain.count %></div>
                     </div>
                     <div class="col-auto">
                       
@@ -45,8 +45,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Deliveries for tomorrow</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">29</div>
+                      <div class="text-md font-weight-bold text-success text-uppercase mb-1">Deliveries for tomorrow</div>
+                      <div class="h3 mb-0 font-weight-bold text-gray-800"><%= @tomorrow.count %></div>
                     </div>
                     <div class="col-auto">
                       
@@ -61,8 +61,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Deliveries for this week</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">150</div>
+                      <div class="text-md font-weight-bold text-success text-uppercase mb-1">Deliveries for this week</div>
+                      <div class="h3 mb-0 font-weight-bold text-gray-800"><%= @this_week.count %></div>
                     </div>
                     <div class="col-auto">
                       
@@ -77,19 +77,88 @@
 <hr/>
 
 	
-<div class="col-xl-3 col-md-6 mb-4">
-	<form>
-	  <div class="form-group">
-	    <label for="exampleInputEmail1">From date</label>
-	    <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Choose start date">
-	  </div>
-	</form>
-</div>
+<h4>All remaining deliveries this week </h4>
 <div class="col-xl-12 col-md-6 mb-4">           
 	<!-- DataTales Example -->
-          <div class="card shadow mb-4">
+          <div class="card border-left-danger shadow mb-4">
+            <div class="card-header py-4">
+              <h4 class="m-0  text"> Date showing: <%= @today_date.strftime("%A %d-%m-%Y") + " - " + @next_friday_date.strftime("%A %d-%m-%Y") %></h4>
+              <hr/>
+              <p style="margin-top: 10px;">
+              <span style="margin-right: 50px;">
+              <i class="fas fa-angle-double-left"></i>
+              <%= link_to "Previous week", "/pages/dashboard?date=" + @today_date.last_week(:monday).strftime("%Y-%m-%d") %>
+            </span>
+              <i class="fas fa-angle-left"></i>
+              <%= link_to "Previous day", "/pages/dashboard?date=" + @today_date.prev_day.strftime("%Y-%m-%d") %>
+              |  <%= link_to "Today", "/pages/dashboard?date=" + DateTime.now.strftime("%Y-%m-%d") %> |
+
+              <span style="margin-right: 50px;">
+              <%= link_to "Next day", "/pages/dashboard?date=" + @today_date.next_day.strftime("%Y-%m-%d") %>
+              <i class="fas fa-angle-right"></i>
+            </span>
+             <%= link_to "Next week", "/pages/dashboard?date=" + @today_date.next_occurring(:monday).strftime("%Y-%m-%d") %>
+              <i class="fas fa-angle-double-right"></i>
+            </p>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Interval</th>
+                      <th>Delivery date</th>
+                      <th>Deliver</th>
+                      <th>Comment</th>
+                      <th>Add comment</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Name</th>
+                      <th>Interval</th>
+                      <th>Delivery date</th>
+                      <th>Deliver</th>
+                      <th>Comment</th>
+                      <th>Add comment</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+
+                    <% @this_week.all.each do |d| %>
+                    <tr>
+                
+                      <td><%= link_to d.get_obj.company.name + " " + d.get_obj.name, d.get_obj %></td>
+                      <td><%= d.change_amount %></td>
+                     
+                      <td><%= d.delivery.strftime("%A %d-%m-%Y") %></td>
+                      <td>
+                        <%= form_for d do |form| %>
+                          <%= form.hidden_field :delivered, :value => true %>
+                          <%= form.submit "Deliver", :class => "btn btn-success" %>
+                        <% end %>  
+                      </td>
+                      <td><%= d.got_comments? ? d.get_comment   : "No comments" %>   </td>
+                      <td><%= link_to "Add comment", new_comment_path + "?klass=" + d.class.name + "&klass_id=" + d.id.to_s  %></td>
+                    </tr>
+                  <% end %>
+                 
+                    </tbody>
+                </table>
+              </div>
+            </div>
+
+
+          </div>
+</div>
+<!-- end col -->
+
+<div class="col-xl-12 col-md-6 mb-4">           
+  <!-- DataTales Example -->
+          <div class="card  border-left-success shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">All deliveries <%= DateTime.now.strftime("%d-%m-%Y") %></h6>
+              <h4 class="m-0  text">All deliveries made today <%= DateTime.now.strftime("%d-%m-%Y")  %></h4>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -98,28 +167,43 @@
                     <tr>
                       <th>Name</th>
                       <th>Interval</th>
-                      <th>Day</th>
-                      <th>Start date</th>
+                      <th>Delivery date</th>
+                      <th>Deliver</th>
+                      <th>Delivered</th>
+                      <th>Comment</th>
+                      <th>Add comment</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                       <th>Name</th>
                       <th>Interval</th>
-                      <th>Day</th>
-                      <th>Start date</th>
+                      <th>Delivery date</th>
+                      <th>Deliver</th>
+                      <th>Delivered</th>
+                      <th>Comment</th>
+                      <th>Add comment</th>
                     </tr>
                   </tfoot>
                   <tbody>
 
-                    <% CompanyMat.all.each do |m| %>
+                    <% @today.all.each do |d| %>
                     <tr>
                 
-                      <td><%= link_to m.company.name + " " + m.mat.name, m %></td>
-                      <td><%= link_to m.change, m %></td>
-                      <td><%= link_to m.change_day, m %></td>
-                      <td><%= link_to m.start_date, m %></td>
-                   
+                      <td><%= link_to d.get_obj.company.name + " " + d.get_obj.name, d.get_obj %></td>
+                      <td><%= d.change_amount %></td>
+                      
+                      <td><%= d.delivery.strftime("%A %d-%m-%Y") %></td>
+                      <td>
+                        <%= form_for d do |form| %>
+                              <%= form.hidden_field :delivered, :value => false %>
+                              <%= form.submit "Undo", :class => "btn btn-danger" %>
+                        <% end %>  
+
+                      </td>
+                      <td><%= d.delivered_date.strftime("%d-%m %H:%m")  %> </td>
+                      <td><%= d.got_comments? ? d.get_comment   : "No comments" %>   </td>
+                      <td><%= link_to "Add comment", new_comment_path + "?klass=" + d.class.name + "&klass_id=" + d.id.to_s  %></td>
                     </tr>
                   <% end %>
                  
@@ -127,5 +211,7 @@
                 </table>
               </div>
             </div>
+
+            
           </div>
 </div>

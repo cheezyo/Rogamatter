@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Deliveries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Klass</th>
+      <th>Klass</th>
+      <th>Pack date</th>
+      <th>Delivery</th>
+      <th>Delivered date</th>
+      <th>Change amount</th>
+      <th>Notify</th>
+      <th>Commet</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @deliveries.each do |delivery| %>
+      <tr>
+        <td><%= delivery.klass %></td>
+        <td><%= delivery.klass_id %></td>
+        <td><%= delivery.pack_date %></td>
+        <td><%= delivery.delivery %></td>
+        <td><%= delivery.delivered_date %></td>
+        <td><%= delivery.change_amount %></td>
+        <td><%= delivery.notify %></td>
+        <td><%= delivery.commet_id %></td>
+        <td><%= link_to 'Show', delivery %></td>
+        <td><%= link_to 'Edit', edit_delivery_path(delivery) %></td>
+        <td><%= link_to 'Destroy', delivery, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Delivery', new_delivery_path %>

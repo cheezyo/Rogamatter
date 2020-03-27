@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  klass: MyString
+  klass_id: 1
+  pack_date: 2020-03-27
+  delivery: 2020-03-27
+  delivered_date: 2020-03-27
+  change_amount: 1
+  notify: false
+  commet_id: 1
+
+two:
+  klass: MyString
+  klass_id: 1
+  pack_date: 2020-03-27
+  delivery: 2020-03-27
+  delivered_date: 2020-03-27
+  change_amount: 1
+  notify: false
+  commet_id: 1

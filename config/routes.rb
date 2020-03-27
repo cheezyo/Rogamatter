@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :comments
+  resources :deliveries
   resources :mats
   
   resources :company_mats
@@ -8,6 +10,7 @@ Rails.application.routes.draw do
 resources :pages do 
 	collection do 
 		get :dashboard
+		get :new_contracts
 end
 end
 

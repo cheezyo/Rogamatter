@@ -26,6 +26,16 @@
     <%= form.text_area :comment %>
   </div>
 
+  <div class="field">
+    <%= form.label "Inventory" %>
+    <%= form.number_field :inventory %>
+  </div>
+
+    <div class="field">
+    <%= form.label "Sold" %>
+    <%= form.number_field :sold %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
