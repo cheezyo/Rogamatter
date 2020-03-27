@@ -14,12 +14,13 @@
    	</div>
 </div>
 
-<h6 class="m-0  h6 mb-0 text-gray-800">
-  <%= @company.street %><br/>
-  <%= @company.post_code %> <%= @company.city %><br/>
-  <%= @company.phone_number %><br/>
-  <%= mail_to @company.email do %><i class="fas fa-envelope"></i><% end %><br/>
-</h6>
+<h6 class="m-0  h6 mb-0 text-gray-800"><%= @company.street %></h6>
+<h6 class="m-0  h6 mb-0 text-gray-800"><%= @company.post_code %> <%= @company.city %></h6>
+<h6 class="m-0  h6 mb-0 text-gray-800"><%= @company.phone_number %></h6>
+<h6 class="m-0  h6 mb-0 text-gray-800"> <%= mail_to @company.email do %><i class="fas fa-envelope"></i><% end %></h6>
+
+  
+
  <hr/>
   <p class="m-0  p mb-0 text-gray-800">
   <b>Contact person: </b><%= @company.contact_person %> <%= mail_to @company.contact_person_email do %><i class="fas  fa-envelope"></i><% end %> <%= @company.phone_number_contact_person %>
