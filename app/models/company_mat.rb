@@ -18,7 +18,7 @@ class CompanyMat < ApplicationRecord
 		
 
 	end
-
+	
 
 	def matinvetory
 		m = MatInventory.new
@@ -34,6 +34,7 @@ class CompanyMat < ApplicationRecord
 		 	d.klass_id = self.id
 		 	d.delivery = start_date
 		 	d.company_id = self.company_id
+		 	
 		 	case self.change
 		 	when 1
 		 		start_date = start_date.next_day(7)

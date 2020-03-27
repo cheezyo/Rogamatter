@@ -71,3 +71,55 @@
  <% end -%>
 
  </div>
+<hr/>
+ <h3 class="h3 mb-3 text-gray-800">Comments </h3>
+ <% @company.comments.each do |c| %>
+<div class="row-fluid">
+<div class="col-xl-6 col-lg-10 col-md-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Karl Andre Oddsen <small style="float:right"><%= c.created_at.strftime("%d-%m-%Y %H:%M") %></small></h6>
+              </div>
+              <div class="card-body py-1">
+                    <p class="text-italic">
+                      <%= c.comment %>
+                    </p>
+                    
+              </div>
+              <div class="card-footer">
+                <i class="far fa-edit"></i>
+                <%= link_to "Edit", edit_comment_path(c) %> 
+                <i class="far fa-minus-square"></i>
+                <%= link_to 'Delete', c, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </div>
+                    
+                  
+          </div>
+      </div>
+</div>
+
+<% end %>
+  
+<hr/>
+<div class="row-fluid">
+  <div class="col-xl-4 col-lg-10 col-md-12">
+              <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text"> Add comment</h6>
+                </div>
+                <div class="card-body py-1" >
+                   <%= form_for @comment do |form| %>
+                    <%= form.hidden_field :klass, :value => @company.class.name  %>
+                    <%= form.hidden_field :klass_id, :value => @company.id  %>
+                    <%= form.text_area :comment, cols: 65, rows: 3, placeholder: "Write comment here" %> 
+                      
+                </div>
+                <div class="card-footer">
+                 <%= form.submit "Comment", :class => "btn btn-primary btn-block"  %>
+                 <% end %> 
+                </div>
+                      
+                    
+            </div>
+    </div>
+</div>
