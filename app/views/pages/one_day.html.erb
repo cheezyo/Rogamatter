@@ -36,7 +36,7 @@
                     <% @todays_table.all.each do |d| %>
                     <tr>
                 
-                      <td><%= link_to d.get_obj.company.name + " " + d.get_obj.name, d %></td>
+                      <td><%= link_to d.get_obj.company.name + " - " + d.get_obj.name, d %></td>
                       <td><%= d.change_amount %></td>
                       
                       <td><%= d.delivery.strftime("%A %d-%m-%Y") %></td>
