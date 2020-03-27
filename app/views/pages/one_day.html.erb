@@ -1,0 +1,62 @@
+<%= render 'dashboard_header' %>
+
+<div class="col-xl-12 col-md-12 mb-4">           
+  <!-- DataTales Example -->
+          <div class="card  border-left-<%= @color %> shadow mb-4">
+            <div class="card-header py-3">
+              <h4 class="m-0  h4 mb-0 text-gray-800"> <%= @header  %></h4>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>How many</th>
+                      <th>Delivery date</th>
+                      <th>Deliver</th>
+                      <th>Delivered</th>
+                      <th>Comment</th>
+                      <th>Add comment</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Name</th>
+                      <th>How many</th>
+                      <th>Delivery date</th>
+                      <th>Deliver</th>
+                      <th>Delivered</th>
+                      <th>Comment</th>
+                      <th>Add comment</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+
+                    <% @todays_table.all.each do |d| %>
+                    <tr>
+                
+                      <td><%= link_to d.get_obj.company.name + " " + d.get_obj.name, d %></td>
+                      <td><%= d.change_amount %></td>
+                      
+                      <td><%= d.delivery.strftime("%A %d-%m-%Y") %></td>
+                      <td>
+                        <%= form_for d do |form| %>
+                              <%= form.hidden_field :delivered, :value => false %>
+                              <%= form.submit "Undo", :class => "btn btn-danger" %>
+                        <% end %>  
+
+                      </td>
+                      <td><%= d.delivered? ? d.delivered_date.strftime("%d-%m %H:%m") : "Waiting"  %> </td>
+                      <td><%= d.got_comments? ? d.get_comment   : "No comments" %>   </td>
+                      <td><%= link_to "Add comment", new_comment_path + "?klass=" + d.class.name + "&klass_id=" + d.id.to_s  %></td>
+                    </tr>
+                  <% end %>
+                 
+                    </tbody>
+                </table>
+              </div>
+            </div>
+
+            
+          </div>

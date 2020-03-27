@@ -29,7 +29,7 @@
   # POST /company_mats.json
   def create
     @company_mat = CompanyMat.new(company_mat_params)
-
+    @company_mat.change_day = @company_mat.start_date.strftime("%A")
     respond_to do |format|
       if @company_mat.save
         format.html { redirect_to @company_mat.company, notice: 'Company mat was successfully created.' }

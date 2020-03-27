@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_27_135648) do
+ActiveRecord::Schema.define(version: 2020_03_27_192901) do
 
   create_table "comments", force: :cascade do |t|
     t.string "klass"
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 2020_03_27_135648) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "street"
+    t.integer "post_code"
+    t.string "city"
+    t.integer "phone_number"
+    t.string "contact_person"
+    t.integer "phone_number_contact_person"
+    t.integer "org_nr"
+    t.string "email"
+    t.string "contact_person_email"
   end
 
   create_table "company_mats", force: :cascade do |t|
@@ -51,6 +60,7 @@ ActiveRecord::Schema.define(version: 2020_03_27_135648) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "delivered"
+    t.integer "company_id"
   end
 
   create_table "mat_inventories", force: :cascade do |t|

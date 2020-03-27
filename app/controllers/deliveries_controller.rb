@@ -10,6 +10,7 @@ class DeliveriesController < ApplicationController
   # GET /deliveries/1
   # GET /deliveries/1.json
   def show
+   @comment = Comment.new
   end
 
   # GET /deliveries/new
@@ -72,7 +73,7 @@ class DeliveriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def delivery_params
-      params.require(:delivery).permit(:klass, :klass_id, :pack_date, :delivery, :delivered_date, :change_amount, :notify, :commet_id, :delivered)
+      params.require(:delivery).permit(:klass, :klass_id, :pack_date, :delivery, :delivered_date, :change_amount, :notify, :commet_id, :delivered, :company_id)
     end
 
     def is_delivered?

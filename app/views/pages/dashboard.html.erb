@@ -1,88 +1,14 @@
-<p id="notice"><%= notice %></p>
-<!-- Page Heading -->
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800"> Dashboard </h1>
-
-    
-</div>
-<hr/>
-
-<div class="row">
-<div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-md font-weight-bold text-success text-uppercase mb-1">Deliveries made today</div>
-                      <div class="h3 mb-0 font-weight-bold text-gray-800"><%= @today.count %></div>
-                    </div>
-                    <div class="col-auto">
-                      
-                      <i class="fas fa-truck fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-danger shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-md font-weight-bold text-success text-uppercase mb-1">Deliveries remaining</div>
-                      <div class="h3 mb-0 font-weight-bold text-gray-800"><%= @today_remain.count %></div>
-                    </div>
-                    <div class="col-auto">
-                      
-                      <i class="fas fa-truck fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-md font-weight-bold text-success text-uppercase mb-1">Deliveries for tomorrow</div>
-                      <div class="h3 mb-0 font-weight-bold text-gray-800"><%= @tomorrow.count %></div>
-                    </div>
-                    <div class="col-auto">
-                      
-                      <i class="fas fa-truck fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-md font-weight-bold text-success text-uppercase mb-1">Deliveries for this week</div>
-                      <div class="h3 mb-0 font-weight-bold text-gray-800"><%= @this_week.count %></div>
-                    </div>
-                    <div class="col-auto">
-                      
-                      <i class="fas fa-truck fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-</div>
-
-<hr/>
+<%= render 'dashboard_header' %>
 
 	
-<h3>Week calendar  </h3>
+ <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h4 mb-0 text-gray-800"> Week calendar </h1>
+</div>
 <div class="col-xl-12 col-md-12 mb-4">           
 	<!-- DataTales Example -->
-          <div class="card border-left-danger shadow mb-4">
+          <div class="card border-left-primary shadow mb-4">
             <div class="card-header py-4">
-              <h4 class="m-0  text"> Date showing: <%= @today_date.strftime("%A %d-%m-%Y") + " - " + @next_friday_date.strftime("%A %d-%m-%Y") %></h4>
+              <h4 class="m-0  h4 mb-0 text-gray-800"> Date showing: <%= @today_date.strftime("%A %d-%m-%Y") + " - " + @next_friday_date.strftime("%A %d-%m-%Y") %></h4>
               <hr/>
               <p style="margin-top: 10px;">
               <span style="margin-right: 50px;">
@@ -103,11 +29,11 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>Name</th>
-                      <th>Interval</th>
+                      <th>How many</th>
                       <th>Delivery date</th>
                       <th>Deliver</th>
                       <th>Comment</th>
@@ -117,7 +43,7 @@
                   <tfoot>
                     <tr>
                       <th>Name</th>
-                      <th>Interval</th>
+                      <th>How many</th>
                       <th>Delivery date</th>
                       <th>Deliver</th>
                       <th>Comment</th>
@@ -129,7 +55,7 @@
                     <% @this_week.all.each do |d| %>
                     <tr>
                 
-                      <td><%= link_to d.get_obj.company.name + " " + d.get_obj.name, d.get_obj %></td>
+                      <td><%= link_to d.get_obj.company.name + " - " + d.get_obj.name, d %></td>
                       <td><%= d.change_amount %></td>
                      
                       <td><%= d.delivery.strftime("%A %d-%m-%Y") %></td>
@@ -154,64 +80,5 @@
 </div>
 <!-- end col -->
 
-<div class="col-xl-12 col-md-12 mb-4">           
-  <!-- DataTales Example -->
-          <div class="card  border-left-success shadow mb-4">
-            <div class="card-header py-3">
-              <h4 class="m-0  text">All deliveries made today <%= DateTime.now.strftime("%d-%m-%Y")  %></h4>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Interval</th>
-                      <th>Delivery date</th>
-                      <th>Deliver</th>
-                      <th>Delivered</th>
-                      <th>Comment</th>
-                      <th>Add comment</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Name</th>
-                      <th>Interval</th>
-                      <th>Delivery date</th>
-                      <th>Deliver</th>
-                      <th>Delivered</th>
-                      <th>Comment</th>
-                      <th>Add comment</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
 
-                    <% @today.all.each do |d| %>
-                    <tr>
-                
-                      <td><%= link_to d.get_obj.company.name + " " + d.get_obj.name, d.get_obj %></td>
-                      <td><%= d.change_amount %></td>
-                      
-                      <td><%= d.delivery.strftime("%A %d-%m-%Y") %></td>
-                      <td>
-                        <%= form_for d do |form| %>
-                              <%= form.hidden_field :delivered, :value => false %>
-                              <%= form.submit "Undo", :class => "btn btn-danger" %>
-                        <% end %>  
-
-                      </td>
-                      <td><%= d.delivered_date.strftime("%d-%m %H:%m")  %> </td>
-                      <td><%= d.got_comments? ? d.get_comment   : "No comments" %>   </td>
-                      <td><%= link_to "Add comment", new_comment_path + "?klass=" + d.class.name + "&klass_id=" + d.id.to_s  %></td>
-                    </tr>
-                  <% end %>
-                 
-                    </tbody>
-                </table>
-              </div>
-            </div>
-
-            
-          </div>
 </div>

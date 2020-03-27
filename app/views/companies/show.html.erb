@@ -1,48 +1,58 @@
 <p id="notice"><%= notice %></p>
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800"> <%= @company.name %> </h1>
+    <h1 class="h3 mb-0 text-gray-800"> <%= @company.name %> <small> Org.nr. <%= @company.org_nr %></small> </h1>
 
     <div class="row">
 	    <div class="col">
 	    	<i class="far fa-edit"></i>
-	           <%= link_to 'Rediger', edit_company_path(@company) %>     
+	           <%= link_to 'Edit company', edit_company_path(@company) %>     
 
 	     	 <i class="far fa-plus-square"></i>
-			   <%= link_to "Legg til ny avtale", "/pages/new_contracts?company_id=" + @company.id.to_s %>
+			   <%= link_to "Add new deal", "/pages/new_contracts?company_id=" + @company.id.to_s %>
 		</div> 
    	</div>
 </div>
+
+<h6 class="m-0  h6 mb-0 text-gray-800">
+  <%= @company.street %><br/>
+  <%= @company.post_code %> <%= @company.city %><br/>
+  <%= @company.phone_number %><br/>
+  <%= mail_to @company.email do %><i class="fas fa-envelope"></i><% end %><br/>
+</h6>
+ <hr/>
+  <p class="m-0  p mb-0 text-gray-800">
+  <b>Contact person: </b><%= @company.contact_person %> <%= mail_to @company.contact_person_email do %><i class="fas  fa-envelope"></i><% end %> <%= @company.phone_number_contact_person %>
+  </p>
 <hr/>
 
 
 
 <!-- Content Row -->
+<div class="row">
 <% @company.company_mats.each do |m| %>
-          <div class="row">
 
-            <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
-              <div class="card shadow mb-4">
+
+          
+        <div class="col-xl-3 col-lg-4 col-md-12">
+            <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  
-                  <h6 class="m-0 font-weight-bold text-primary"><%= m.amount %>  matter type  <%= m.mat.name %> </h6>
-
+                  <h6 class="m-0 font-weight-bold text-primary"><%= m.amount %>  mats type  <%= m.mat.name %> </h6>
               </div>
               <div class="card-body">
-                  		<strong>Byttes hver </strong>
-        						  <%= m.change_day %>, <%= m.change %> ganger i måneden
+                  		<strong>Change every </strong>
+        						  <%= m.change_day %>, <%= m.change %> times a month
         						  
         						</p>
 
         						<p>
-        						  <strong>Kontrak starter</strong>
-        						  <%= m.start_date %>
+        						  <strong>Start date</strong>
+        						  <%= m.start_date.strftime("%A %d-%m-%Y") %>
         						</p>
 
         						<p>
-        						  <strong>Kontrakt slutter</strong>
-        						  <%= m.end_date %>
+        						  <strong>End date</strong>
+        						  <%= m.end_date.strftime("%A %d-%m-%Y") %>
         						</p>
                     
             	</div>
@@ -56,7 +66,7 @@
                   
           </div>
       </div>
-  </div>
+
  <% end -%>
 
- 
+ </div>

@@ -11,6 +11,7 @@ resources :pages do
 	collection do 
 		get :dashboard
 		get :new_contracts
+		get :one_day
 end
 end
 

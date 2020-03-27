@@ -37,10 +37,6 @@
     <%= form.select( :change, company_mat.change_interval.map { |c| ["#{c}", c] } ) %>
   </div>
 
-  <div class="field">
-    <%= form.label "Bytte dag" %>
-    <%= form.select( :change_day, company_mat.day.map { |c| ["#{c}", c] } ) %>
-  </div>
 
   <div class="field">
     <%= form.label "Antall like matter" %>

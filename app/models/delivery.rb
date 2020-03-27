@@ -11,7 +11,7 @@ class Delivery < ApplicationRecord
 	end
 
 	def comments
-		Comment.where(klass: self.class.name, klass_id: self.id ).order(created_at: :desc)
+		Comment.where(klass: self.class.name, klass_id: self.id ).order(created_at: :asc)
  
 	end
 
