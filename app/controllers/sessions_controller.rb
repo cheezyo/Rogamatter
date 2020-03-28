@@ -24,8 +24,7 @@ class SessionsController < ApplicationController
   def login
   end
 
-  def welcome
-  end
+
 
   def destroy
     session[:user_id] = nil

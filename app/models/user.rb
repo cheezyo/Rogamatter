@@ -7,13 +7,7 @@ class User < ApplicationRecord
 	validates_presence_of :username
 	validates_uniqueness_of :username
 
-	def logged_in?
-		if  @user = User.find_by(id: session[:user_id])
-			true
-		end 
-
-		false
-	end
+		
 
 	def self.authenticate(username, password)
 		user = find_by_username(username)
