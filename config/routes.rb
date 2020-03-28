@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+  get 'sessions/create'
+  get 'sessions/login'
+  get 'sessions/welcome'
+  get 'users/new'
+  get 'users/create'
   resources :comments
   resources :deliveries
   resources :mats
@@ -12,8 +18,13 @@ resources :pages do
 		get :dashboard
 		get :new_contracts
 		get :one_day
+  end
 end
-end
-
+resources :users, only: [:new, :create, :show]
+   get 'login', to: 'sessions#new'
+   post 'login', to: 'sessions#create'
+   get 'welcome', to: 'sessions#welcome'
+   get 'authorized', to: 'sessions#page_requires_login'
+   get 'log_out', to: 'sessions#destroy'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

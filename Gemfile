@@ -7,7 +7,7 @@ ruby '2.6.5'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4', :group => [:development, :test]
-
+gem 'bcrypt'
 group :production do 
 	gem 'pg'
 end	

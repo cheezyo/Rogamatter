@@ -4,7 +4,17 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    comments = Comment.order("created_at desc").pluck(:klass, :klass_id).uniq
+    @arr = Array.new
+    i = 0
+    comments.each do |comment|
+       klass = Object.const_get comment[0]
+        obj = klass.find(comment[1])
+        @arr << obj
+        
+    end
+
+
   end
 
   # GET /comments/1

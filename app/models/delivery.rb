@@ -1,6 +1,8 @@
 class Delivery < ApplicationRecord
 
-
+	def name 
+		"Delivery #" + self.id.to_s
+	end
 	def get_obj 
 		
 
