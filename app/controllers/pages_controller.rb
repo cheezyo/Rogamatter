@@ -44,6 +44,7 @@ def set_dates
       @today = @deliveries.where(delivery: @today_date, delivered: true)
       @today_remain = @deliveries.where(delivery: @today_date, delivered: false)
       @tomorrow = @deliveries.where(delivery: @today_date.next_day(1), delivered: false)
+      @next_friday_date = @today_date.next_occurring(:friday)
       if @today_date.strftime("%A") == "Friday"          
           @next_friday_date = @today_date
       end

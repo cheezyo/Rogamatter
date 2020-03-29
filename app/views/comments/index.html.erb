@@ -19,26 +19,30 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Comment thread (comments)</th>
-                      <th>Last comment</th>
-                      <th>Date</th>
+                      <th>Comment thread</th>
+                      <th>Last</th>
+                      <th>Comment</th>
+                      <th>#</th>
                       <th>By</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>Name</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
+                       <th>Comment thread</th>
+                      <th>Last</th>
+                      <th>Comment</th>
+                      <th>#</th>
+                      <th>By</th>
                     </tr>
                   </tfoot>
                   <tbody>
 
                      <% @arr.each do |klass| %>
                     <tr>
-                          <td><%= link_to klass.name, klass %> (<%= klass.comments.count %>)</td>
-                          <td><%= klass.comments.last.comment %></td>
+                          <td><%= link_to klass.name, klass %> </td>
                           <td><%= time_ago_in_words(klass.comments.last.created_at)  %> ago</td>
+                          <td><%= klass.comments.last.comment %></td>
+                          <td>[<%= klass.comments.count %>]</td>
                           <td><%= link_to klass.comments.last.user.username, klass.comments.last.user %></td>
                      
                     </tr>
