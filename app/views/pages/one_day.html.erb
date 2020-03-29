@@ -43,7 +43,9 @@
                       <td>
                         <%= form_for d do |form| %>
                               <%= form.hidden_field :delivered, :value => false %>
-                              <%= form.submit "Undo", :class => "btn btn-danger" %>
+                 
+                              <%= form.submit "Undo" , :class => "btn btn-" + @color %>
+                            
                         <% end %>  
 
                       </td>

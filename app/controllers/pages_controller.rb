@@ -12,16 +12,19 @@ before_action :set_dates, only: [:dashboard, :one_day]
     def one_day
       @todays_table = @today_remain
       @color = "danger"
+      @btn = "Undo"
       @header = "Deliveries to make today " + @today_date.strftime("%d-%m-%Y")
       if params[:done].present? && params[:done] == "true"
         @todays_table = @today
         @color = "success"
+        @btn = "Deliver"
         @header = "Deliveries made today " + @today_date.strftime("%d-%m-%Y")
       
       elsif params[:day].present? && params[:day] == "tomorrow"
         @todays_table = @tomorrow
         @today_date = @today_date.next_day
         @color="warning"
+        @btn = "Deliver"
         @header = "Deliveries to make tomorrow " + @today_date.next_day.strftime("%d-%m-%Y")
       end 
         
