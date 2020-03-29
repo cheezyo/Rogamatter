@@ -20,8 +20,8 @@
       @company_mat.company_id = params[:company_id].to_i
     end
 
-    @company_mat.delivery_price = 0.0 
-    @company_mat.contract_price = 0.0
+    @company_mat.delivery_price = 0
+    @company_mat.contract_price = 0
   end
 
   # GET /company_mats/1/edit
