@@ -44,10 +44,10 @@
                         <%= form_for d do |form| %>
                         <% if d.delivered?  %>
                               <%= form.hidden_field :delivered, :value => false %>
-                              <%= form.submit "Undo" , :class => "btn btn-" + @color %>
+                              <%= form.submit "Undo" , :class => "btn btn-danger" %>
                         <% else %>
                                <%= form.hidden_field :delivered, :value => true %>
-                              <%= form.submit "Deliver" , :class => "btn btn-" + @color %>
+                              <%= form.submit "Deliver" , :class => "btn btn-success"%>
                         <% end %>
                         <% end %>  
 
