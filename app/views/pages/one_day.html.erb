@@ -42,10 +42,13 @@
                       <td><%= d.delivery.strftime("%A %d-%m-%Y") %></td>
                       <td>
                         <%= form_for d do |form| %>
+                        <% if d.delivered?  %>
                               <%= form.hidden_field :delivered, :value => false %>
-                 
                               <%= form.submit "Undo" , :class => "btn btn-" + @color %>
-                            
+                        <% else %>
+                               <%= form.hidden_field :delivered, :value => true %>
+                              <%= form.submit "Deliver" , :class => "btn btn-" + @color %>
+                        <% end %>
                         <% end %>  
 
                       </td>

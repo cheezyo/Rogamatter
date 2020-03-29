@@ -12,7 +12,7 @@ before_action :set_dates, only: [:dashboard, :one_day]
     def one_day
       @todays_table = @today_remain
       @color = "danger"
-      @btn = "Undo"
+      
       @header = "Deliveries to make today " + @today_date.strftime("%d-%m-%Y")
       if params[:done].present? && params[:done] == "true"
         @todays_table = @today
