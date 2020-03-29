@@ -40,6 +40,7 @@
                       <td><%= d.change_amount %></td>
                       
                       <td><%= d.delivery.strftime("%A %d-%m-%Y") %></td>
+                      <% if @tomorrow.nil%>
                       <td>
                         <%= form_for d do |form| %>
                         <% if d.delivered?  %>
@@ -48,10 +49,13 @@
                         <% else %>
                                <%= form.hidden_field :delivered, :value => true %>
                               <%= form.submit "Deliver" , :class => "btn btn-success"%>
+                       
+
                         <% end %>
                         <% end %>  
 
                       </td>
+                      <% end %>
                       <td><%= d.delivered? ? d.delivered_date.strftime("%d-%m %H:%m") : "Waiting"  %> </td>
                       <td><%= d.got_comments? ? d.get_comment   : "No comments" %>   </td>
                       <td><%= link_to "Add comment", new_comment_path + "?klass=" + d.class.name + "&klass_id=" + d.id.to_s  %></td>

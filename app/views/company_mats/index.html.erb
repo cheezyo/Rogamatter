@@ -18,7 +18,7 @@
                   <thead>
                     <tr>
                       <th>Name</th>
-                      <th>Price pr. month</th>
+                      <th>Price pr. mat</th>
                       <th>Delivery cost</th>
                       <th>Change day</th>
                       <th>Interval</th>
@@ -31,7 +31,7 @@
                   <tfoot>
                     <tr>
                       <th>Name</th>
-                      <th>Price pr. month</th>
+                      <th>Price pr. mat</th>
                       <th>Delivery cost</th>
                       <th>Change day</th>
                       <th>Interval</th>
@@ -47,7 +47,7 @@
                     <tr>
                 
                       <td><%= link_to cm.company.name + " - " + cm.amount.to_s + " x " + cm.mat.name, cm %></td>
-                      <td><%= cm.month_price %>kr</td>
+                      <td><%= cm.contract_price %>kr</td>
                       <td><%= cm.delivery_price %>kr</td>
                       <td><%= cm.change_day %></td>
                       <td><%= cm.change %></td>

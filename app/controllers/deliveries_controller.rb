@@ -46,7 +46,7 @@ class DeliveriesController < ApplicationController
       if @delivery.update(delivery_params)
         is_delivered?
 
-        format.html { redirect_to "/pages/dashboard", notice: 'Delivery was successfully updated.' }
+        format.html { redirect_to "/pages/one_day", notice: 'Delivery was successfully updated.' }
         format.json { render :show, status: :ok, location: @delivery }
       else
         format.html { render :edit }
