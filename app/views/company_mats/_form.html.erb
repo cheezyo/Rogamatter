@@ -71,11 +71,11 @@
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
                   <h5 class="m-0 mb-3 text-gray-800">Price per mat</h5>
-                  <%= form.number_field :contract_price, :class => "form-control form-control-user" %>
+                  <%= form.number_field :contract_price, step: 0.1,  :class => "form-control form-control-user" %>
                   </div>
                   <div class="col-sm-6">
                     <h5 class="m-0 mb-3 text-gray-800">Delivery cost</h5>
-                    <%= form.number_field :delivery_price, :class => "form-control form-control-user" %>
+                    <%= form.number_field :delivery_price, step: 0.1, :class => "form-control form-control-user" %>
                   </div>
                 </div>
                

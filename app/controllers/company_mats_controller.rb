@@ -22,6 +22,7 @@
 
     @company_mat.delivery_price = 0
     @company_mat.contract_price = 0
+    @company_mat.amount = 1
   end
 
   # GET /company_mats/1/edit
