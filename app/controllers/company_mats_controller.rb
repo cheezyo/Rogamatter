@@ -19,6 +19,9 @@
     if params[:company_id].present?
       @company_mat.company_id = params[:company_id].to_i
     end
+
+    @company_mat.delivery_price = 0.0 
+    @company_mat.contract_price = 0.0
   end
 
   # GET /company_mats/1/edit
@@ -77,6 +80,6 @@
 
     # Only allow a list of trusted parameters through.
     def company_mat_params
-      params.require(:company_mat).permit(:change, :change_day, :start_date, :end_date, :company_id, :mat_id, :amount)
+      params.require(:company_mat).permit(:change, :change_day, :start_date, :end_date, :company_id, :mat_id, :amount, :delivery_price, :contract_price)
     end
 end

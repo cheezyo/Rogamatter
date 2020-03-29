@@ -1,7 +1,7 @@
 <%= form_with(model: company_mat, local: true) do |form| %>
   <% if company_mat.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(company_mat.errors.count, "error") %> prohibited this company_mat from being saved:</h2>
+      <h2><%= pluralize(company_mat.errors.count, "error") %> prohibited this contract from being saved:</h2>
 
       <ul>
         <% company_mat.errors.full_messages.each do |message| %>
@@ -10,40 +10,80 @@
       </ul>
     </div>
   <% end %>
+<style type="text/css">
+  
+  select {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+</style>
+<div class="col-lg-7">
+            <div class="p-5">
+              <div class="text-center">
+    
+              </div>
+              <form class="user">
 
+                 <div class="form-group">
+                  <h5 class="m-0 mb-3 text-gray-800">Company</h5>
+                <%= form.collection_select :company_id, Company.all, :id, :name, :class => "form-control form-control-user" %>
+                
+                </div>
+            
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <h5 class="m-0 mb-3 text-gray-800">Start date</h5>
+                   <%= form.date_select :start_date, :class => "form-control form-control-user" %>
+                  </div>
+                  <div class="col-sm-6">
+                    <h5 class="m-0 mb-3 text-gray-800">End date</h5>
+                   <%= form.date_select :end_date, :class => "form-control form-control-user" %>
+                  </div>
+                </div>
+                 <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                  <h5 class="m-0 mb-3 text-gray-800">Mats</h5>
+                  <%= form.collection_select :mat_id, Mat.all, :id, :name, :class => "form-control form-control-user" %>
+                  </div>
+                  <div class="col-sm-6">
+                    <h5 class="m-0 mb-3 text-gray-800">Quantity</h5>
+                    <%= form.number_field :amount, :class => "form-control form-control-user" %>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6">
+                    <h5 class="m-0 mb-3 text-gray-800">Change interval</h5>
+                   <%= form.select( :change, company_mat.change_interval.map { |c| ["#{c}", c] }, :class => 'form-control form-control-user' )  %>
+                  </div>
+                </div>
+ 
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                  <h5 class="m-0 mb-3 text-gray-800">Price per mat</h5>
+                  <%= form.number_field :contract_price, :class => "form-control form-control-user" %>
+                  </div>
+                  <div class="col-sm-6">
+                    <h5 class="m-0 mb-3 text-gray-800">Delivery cost</h5>
+                    <%= form.number_field :delivery_price, :class => "form-control form-control-user" %>
+                  </div>
+                </div>
+               
+              
+                <%= form.submit "Save", :class => "btn btn-primary btn-user btn-block" %>
+              </form>
 
-
-
-  <div class="field">
-    <%= form.label "Firma" %>
-    <%= form.collection_select :company_id, Company.all, :id, :name %>
-  </div>
-   <div class="field">
-    <%= form.label "Kontrakt start" %>
-    <%= form.date_select :start_date %>
-  </div>
-  <div class="field">
-    <%= form.label "Kontrakt slutt" %>
-    <%= form.date_select :end_date %>
-  </div>
-
-   <div class="field">
-    <%= form.label "Matte type" %>
-    <%= form.collection_select :mat_id, Mat.all, :id, :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label "Bytter per måned" %>
-    <%= form.select( :change, company_mat.change_interval.map { |c| ["#{c}", c] } ) %>
-  </div>
-
-
-  <div class="field">
-    <%= form.label "Antall like matter" %>
-    <%= form.number_field :amount %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Lagre" %>
-  </div>
+              
+            </div>
+          </div>
 <% end %>

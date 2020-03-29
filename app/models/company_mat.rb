@@ -4,6 +4,7 @@ class CompanyMat < ApplicationRecord
 	has_many :mat_inventories, :dependent => :delete_all
 	after_create :matinvetory
 	before_destroy :archive_item
+	validates_presence_of :amount, :delivery_price, :month_price
 
 
 	def name
@@ -14,9 +15,19 @@ class CompanyMat < ApplicationRecord
 	def deliveries
 
 		deliveries = Deliveries.where(klass: self.class.name, klass_id: self.id )
+	end
 
-		
+	def month_price
+		self.contract_price * self.change * self.amount
+	end
 
+
+	def delivery_m_price
+		self.delivery_price * self.change
+	end
+
+	def month_sum
+		self.month_price + self.delivery_m_price
 	end
 	
 
