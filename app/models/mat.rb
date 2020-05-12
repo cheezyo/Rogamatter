@@ -10,7 +10,7 @@ class Mat < ApplicationRecord
   end
 
 	def category 
-		["Nylon", "Logo", "Bæsj"]
+		["Nylon", "Logo", "Mopper", "Kluter"]
 	end
 
 	def check_if_sold?

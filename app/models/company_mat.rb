@@ -48,13 +48,13 @@ class CompanyMat < ApplicationRecord
 		 	
 		 	case self.change
 		 	when 1
-		 		start_date = start_date.next_day(7)
+		 		start_date = start_date.next_day(28)
 	 		when 2
 	 			start_date = start_date.next_day(14)
 	 		when 3
 	 			start_date = start_date.next_day(21)
 	 		when 4 
-	 			start_date = start_date.next_day(28)
+	 			start_date = start_date.next_day(7)
 	 		else 
 	 			"Error no interval"
 	 		end
