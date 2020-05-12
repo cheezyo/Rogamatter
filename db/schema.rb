@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_29_115257) do
+ActiveRecord::Schema.define(version: 2020_04_06_124826) do
 
   create_table "comments", force: :cascade do |t|
     t.string "klass"
@@ -48,6 +48,22 @@ ActiveRecord::Schema.define(version: 2020_03_29_115257) do
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "delivery_price"
     t.decimal "contract_price"
+    t.string "location"
+  end
+
+  create_table "company_mops", force: :cascade do |t|
+    t.integer "change"
+    t.string "change_day"
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "company_id"
+    t.integer "mop_id"
+    t.integer "amount"
+    t.decimal "delivery_price"
+    t.decimal "contract_price"
+    t.string "location"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "deliveries", force: :cascade do |t|
@@ -81,6 +97,23 @@ ActiveRecord::Schema.define(version: 2020_03_29_115257) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "inventory"
     t.integer "sold"
+  end
+
+  create_table "mop_inventories", force: :cascade do |t|
+    t.integer "company_mop_id"
+    t.integer "mop_id"
+    t.integer "sold"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "mops", force: :cascade do |t|
+    t.string "mop_type"
+    t.string "size"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "sold"
+    t.integer "inventory"
   end
 
   create_table "users", force: :cascade do |t|

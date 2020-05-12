@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :company_mops
+  resources :mops
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/login'

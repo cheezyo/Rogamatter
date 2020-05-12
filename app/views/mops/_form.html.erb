@@ -1,10 +1,10 @@
-<%= form_with(model: mat, local: true) do |form| %>
-  <% if mat.errors.any? %>
+<%= form_with(model: mop, local: true) do |form| %>
+  <% if mop.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(mat.errors.count, "error") %> prohibited this mat from being saved:</h2>
+      <h2><%= pluralize(mop.errors.count, "error") %> prohibited this mop from being saved:</h2>
 
       <ul>
-        <% mat.errors.full_messages.each do |message| %>
+        <% mop.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
@@ -17,12 +17,12 @@
 
                  <div class="form-group">
                   <h5 class="m-0 mb-3 text-gray-800">Type</h5>
-                  <%= form.select(:mat_type, mat.category.map {|c| [ "#{c}", c] } ) %>
+                  <%= form.select(:mop_type, mop.category.map {|c| [ "#{c}", c] } ) %>
                 
                 </div>
                  <div class="form-group">
                   <h5 class="m-0 mb-3 text-gray-800">Size</h5>
-                    <%= form.text_field :mat_size %>
+                    <%= form.text_field :size %>
                 
                 </div>
                 <div class="form-group">
@@ -37,5 +37,4 @@
               
             </div>
           </div>
-  
 <% end %>

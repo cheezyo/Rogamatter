@@ -1,10 +1,10 @@
-<%= form_with(model: company_mat, local: true) do |form| %>
-  <% if company_mat.errors.any? %>
+<%= form_with(model: company_mop, local: true) do |form| %>
+  <% if company_mop.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(company_mat.errors.count, "error") %> prohibited this contract from being saved:</h2>
+      <h2><%= pluralize(company_mop.errors.count, "error") %> prohibited this company_mop from being saved:</h2>
 
       <ul>
-        <% company_mat.errors.full_messages.each do |message| %>
+        <% company_mop.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
@@ -53,8 +53,8 @@
                 </div>
                  <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                  <h5 class="m-0 mb-3 text-gray-800">Mats</h5>
-                  <%= form.collection_select :mat_id, Mat.all, :id, :name, :class => "form-control form-control-user" %>
+                  <h5 class="m-0 mb-3 text-gray-800">Mops</h5>
+                  <%= form.collection_select :mop_id, Mop.all, :id, :name, :class => "form-control form-control-user" %>
                   </div>
                   <div class="col-sm-6">
                     <h5 class="m-0 mb-3 text-gray-800">Quantity</h5>
@@ -64,7 +64,7 @@
                 <div class="form-group row">
                   <div class="col-sm-6">
                     <h5 class="m-0 mb-3 text-gray-800">Change interval</h5>
-                   <%= form.select( :change, company_mat.change_interval.map { |c| ["#{c}", c] }, :class => 'form-control form-control-user' )  %>
+                   <%= form.select( :change, company_mop.change_interval.map { |c| ["#{c}", c] }, :class => 'form-control form-control-user' )  %>
                   </div>
                    <div class="col-sm-6">
                     <h5 class="m-0 mb-3 text-gray-800">Location</h5>

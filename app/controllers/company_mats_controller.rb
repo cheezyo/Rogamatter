@@ -81,6 +81,6 @@
 
     # Only allow a list of trusted parameters through.
     def company_mat_params
-      params.require(:company_mat).permit(:change, :change_day, :start_date, :end_date, :company_id, :mat_id, :amount, :delivery_price, :contract_price)
+      params.require(:company_mat).permit(:change, :change_day, :start_date, :end_date, :company_id, :mat_id, :amount, :delivery_price, :contract_price, :location)
     end
 end

@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">  Mops </h1>
+</div>
+
+<!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">All mops</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Mat type</th>
+                      <th>Mat size</th>
+                      <th>Inventory</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                       <th>Mat type</th>
+                      <th>Mat size</th>
+                      <th>Inventory</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+
+                    <% @mops.each do |mop| %>
+                    <tr>
+                      <td><%= link_to mop.mop_type, mop %></td>
+                      <td><%= mop.size %></td>
+                      <td> <%= mop.remaining %> (<%= mop.inventory %>)</td>
+                      
+                      <td><%= link_to 'Edit', edit_mop_path(mop) %></td>
+
+                      <td>
+                        <% if mop.check_if_sold? %>
+                        <%= link_to 'Delete', mop, method: :delete, data: { confirm: 'Are you sure?' } %>
+                        <% else %>
+                        Delete contracts first
+                        <% end %>  
+                      </td>
+                    </tr>
+                  <% end %>
+                 
+                    </tbody>
+                </table>
+              </div>
+            </div>
+          </div>

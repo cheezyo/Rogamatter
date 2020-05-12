@@ -104,6 +104,29 @@
         </div>
       </li>
 
+       <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMop" aria-expanded="true" aria-controls="collapseMat">
+          <i class="fas fa-money-bill-wave-alt"></i>
+          <span>Mops</span>
+        </a>
+        <div id="collapseMop" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+             <%= link_to mops_path do %>
+             <span class="collapse-item">
+               All mops
+            </span>
+             <% end -%>
+             <%= link_to new_mop_path do %>
+             <span class="collapse-item">
+              <i class="fas fa-plus fa-sm fa-fw mr-2 "></i>
+               New mop
+            </span>
+             <% end -%>
+           
+          </div>
+        </div>
+      </li>
+
       <!-- Divider -->
       <hr class="sidebar-divider">
       <li class="nav-item">

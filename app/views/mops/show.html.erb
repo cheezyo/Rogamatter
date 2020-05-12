@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @mop.name %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @mop.size %>
+</p>
+
+<%= link_to 'Edit', edit_mop_path(@mop) %> |
+<%= link_to 'Back', mops_path %>

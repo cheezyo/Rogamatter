@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Change:</strong>
+  <%= @company_mop.change %>
+</p>
+
+<p>
+  <strong>Change day:</strong>
+  <%= @company_mop.change_day %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @company_mop.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @company_mop.end_date %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @company_mop.company_id %>
+</p>
+
+<p>
+  <strong>Mop:</strong>
+  <%= @company_mop.mop_id %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @company_mop.amount %>
+</p>
+
+<p>
+  <strong>Delivery price:</strong>
+  <%= @company_mop.delivery_price %>
+</p>
+
+<p>
+  <strong>Contract price:</strong>
+  <%= @company_mop.contract_price %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @company_mop.location %>
+</p>
+
+<%= link_to 'Edit', edit_company_mop_path(@company_mop) %> |
+<%= link_to 'Back', company_mops_path %>

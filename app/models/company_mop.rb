@@ -1,14 +1,14 @@
-class CompanyMat < ApplicationRecord
+class CompanyMop < ApplicationRecord
 	belongs_to :company
-	belongs_to :mat
-	has_many :mat_inventories, :dependent => :delete_all
-	after_create :matinvetory
+	belongs_to :mop
+	has_many :mop_inventories, :dependent => :delete_all
+	after_create :mopinvetory
 	before_destroy :archive_item
 	validates_presence_of :amount, :delivery_price, :month_price
 
 
 	def name
-		self.mat.name
+		self.mop.name
 	end
 
 
@@ -29,12 +29,11 @@ class CompanyMat < ApplicationRecord
 	def month_sum
 		self.month_price + self.delivery_m_price
 	end
-	
 
-	def matinvetory
-		m = MatInventory.new
-		m.company_mat_id = self.id
-		m.mat_id = self.mat.id
+	def mopinvetory
+		m = MopInventory.new
+		m.company_mop_id = self.id
+		m.mop_id = self.mop.id
 		m.sold = self.amount
 		m.save!
 
@@ -82,10 +81,4 @@ class CompanyMat < ApplicationRecord
 	def change_interval
 		[1,2,3,4]
 	end
-
-
-	
-
-
-
 end

@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Company Mops</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Change</th>
+      <th>Change day</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Company</th>
+      <th>Mop</th>
+      <th>Amount</th>
+      <th>Delivery price</th>
+      <th>Contract price</th>
+      <th>Location</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @company_mops.each do |company_mop| %>
+      <tr>
+        <td><%= company_mop.change %></td>
+        <td><%= company_mop.change_day %></td>
+        <td><%= company_mop.start_date %></td>
+        <td><%= company_mop.end_date %></td>
+        <td><%= company_mop.company_id %></td>
+        <td><%= company_mop.mop_id %></td>
+        <td><%= company_mop.amount %></td>
+        <td><%= company_mop.delivery_price %></td>
+        <td><%= company_mop.contract_price %></td>
+        <td><%= company_mop.location %></td>
+        <td><%= link_to 'Show', company_mop %></td>
+        <td><%= link_to 'Edit', edit_company_mop_path(company_mop) %></td>
+        <td><%= link_to 'Destroy', company_mop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Company Mop', new_company_mop_path %>
