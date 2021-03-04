@@ -14,7 +14,7 @@ class CompanyMop < ApplicationRecord
 
 	def deliveries
 
-		deliveries = Deliveries.where(klass: self.class.name, klass_id: self.id )
+		deliveries = Delivery.where(klass: self.class.name, klass_id: self.id )
 	end
 
 	def month_price
@@ -69,7 +69,9 @@ class CompanyMop < ApplicationRecord
 	end
 
 	def archive_item
-
+		self.deliveries.each do |d|
+			d.destroy
+		end
 	end
 
 	def day
