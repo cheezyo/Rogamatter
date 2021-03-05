@@ -60,6 +60,7 @@
                   <thead>
                     <tr>
                       <th style="text-decoration: underline;"><%= c.name.upcase %> deliveries</th>
+                      <th>Location</th>
                       <th>How many</th>
                       <th>Delivery date</th>
                       <th>Deliver</th>
@@ -75,6 +76,7 @@
                     <tr>
                 
                       <td><%= link_to d.get_obj.name, d %></td>
+                      <td><%= d.get_obj.location %></td>
                       <td><%= d.change_amount %></td>
                       
                       <td><%= d.delivery.strftime("%A %d-%m-%Y") %></td>
