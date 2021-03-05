@@ -7,12 +7,59 @@
               <h4 class="m-0  h4 mb-0 text-gray-800"> <%= @header  %></h4>
             </div>
             <div class="card-body">
-              <%= @companies.count %>
-              <div class="table-responsive">
+               <div id="accordion">
+              <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                  <th>Company</th>
+                  <th>How many</th>
+                  <% if @done %>
+                  <th>Delivered</th>
+                  <% else %>
+                  <th>Delivery date</th>
+                  <th>Deliver all</th>
+                  <% end %>
+                </tr>
+              </thead>
+              <tbody>
+              <% @companies.each do |c| %>
+              
+              
+                <tr>
+                  <td>
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#<%=c.short_name%>" aria-expanded="true" aria-controls="<%=c.short_name%>">
+                    <%=c.name%>
+                    </button>
+                  </td>
+                  <td>
+                    <%= @todays_table.where(company_id: c.id).sum(:change_amount) %>
+                  </td>
+                  <% if @done %>
+                  <td><%= @todays_table.where(company_id: c.id).first.delivered_date.strftime("%d-%m at %H:%m")%></td>
+                  <% else %>
+                  <td>
+                    <%= @todays_table.where(company_id: c.id).first.delivery.strftime("%d-%m-%Y %A") %>
+                  </td>
+                  
+                  <td>
+                    <%= link_to "Deliver all", deliver_all_deliveries_path + "?company_id=" + c.id.to_s + "&date=" + @todays_table.first.delivery.strftime("%d-%m-%Y"), :class => "btn btn-success" %>
+                  </td>
+
+                  <% end %>
+                </tr>
+              
+              <% end %>
+              </tbody>
+            </table>
+            <hr/>
+
+
+              <% @companies.each do |c| %>
+              <div id="<%=c.short_name%>" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                 <table class="table table-bordered table-striped" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Name</th>
+                      <th style="text-decoration: underline;"><%= c.name.upcase %> deliveries</th>
                       <th>How many</th>
                       <th>Delivery date</th>
                       <th>Deliver</th>
@@ -24,25 +71,23 @@
                   
                   <tbody>
 
-                    <% @todays_table.all.each do |d| %>
+                    <% @todays_table.where(company_id: c.id).each do |d| %>
                     <tr>
                 
-                      <td><%= link_to d.get_obj.company.name + " - " + d.get_obj.name, d %></td>
+                      <td><%= link_to d.get_obj.name, d %></td>
                       <td><%= d.change_amount %></td>
                       
                       <td><%= d.delivery.strftime("%A %d-%m-%Y") %></td>
                       <% if !@is_tomorrow %>
                       <td>
                         <%= form_for d do |form| %>
-                        <% if d.delivered?  %>
-                              <%= form.hidden_field :delivered, :value => false %>
-                              <%= form.submit "Undo" , :class => "btn btn-danger" %>
-                        <% else %>
-                               <%= form.hidden_field :delivered, :value => true %>
-                              <%= form.submit "Deliver" , :class => "btn btn-success"%>
-                       
-
-                        <% end %>
+                          <% if d.delivered?  %>
+                                <%= form.hidden_field :delivered, :value => false %>
+                                <%= form.submit "Undo" , :class => "btn btn-danger" %>
+                          <% else %>
+                                 <%= form.hidden_field :delivered, :value => true %>
+                                <%= form.submit "Deliver" , :class => "btn btn-success"%>
+                          <% end %>
                         <% end %>  
 
                       </td>
@@ -55,7 +100,9 @@
                  
                     </tbody>
                 </table>
-              </div>
+                           </div><!-- collapse --> 
+            <% end %>
+          </div><!-- accordion -->  
             </div>
 
             

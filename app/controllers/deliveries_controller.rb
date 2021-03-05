@@ -65,6 +65,18 @@ class DeliveriesController < ApplicationController
     end
   end
 
+  def deliver_all
+    c = Company.find(params[:company_id])
+    date = DateTime.parse(params[:date])
+    d = Delivery.where(company_id: params[:company_id].to_i).where(delivery: date)
+    d.update_all(delivered: true, delivered_date: DateTime.now)
+
+
+    redirect_to request.referrer
+
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_delivery

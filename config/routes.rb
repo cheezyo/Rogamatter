@@ -8,7 +8,12 @@ Rails.application.routes.draw do
   get 'users/new'
   get 'users/create'
   resources :comments
-  resources :deliveries
+  resources :deliveries do
+    collection do
+      get :deliver_all
+    end
+  end
+  
   resources :mats
   
   resources :company_mats
