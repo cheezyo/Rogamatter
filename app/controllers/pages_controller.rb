@@ -29,7 +29,7 @@ before_action :set_dates, only: [:dashboard, :one_day]
         @is_tomorrow = true
         @header = "Deliveries to make tomorrow " + @today_date.next_day.strftime("%d-%m-%Y")
       end 
-        
+        @companies = Company.find(@todays_table.pluck(:company_id).uniq)
 
     end
 
