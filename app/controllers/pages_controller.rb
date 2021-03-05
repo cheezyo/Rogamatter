@@ -69,6 +69,7 @@ def set_dates
           @this_week = @today_remain
       end
         @this_week =  @this_week.order(delivery: :asc)
+        @companies = Company.find(@this_week.pluck(:company_id).uniq)
 
 end 
 
