@@ -35,6 +35,7 @@
                   <th>Company</th>
                   <th>How many</th>
                   <th>Delivery date</th>
+                  <th>Deliver all</th>
                 </tr>
               </thead>
               <tbody>
@@ -53,6 +54,7 @@
                   <td>
                     <%= @this_week.where(company_id: c.id).first.delivery.strftime("%d-%m-%Y %A") %>
                   </td>
+                  
                 </tr>
               
               <% end %>

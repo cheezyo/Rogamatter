@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   	respond_to do |format|
   		if @user.save
   		session[:user_id] = @user.id
-  		format.html { redirect_to "/welcome", notice: 'User was successfully created.' }
+  		format.html { redirect_to root_url, notice: 'User was successfully created.' }
         format.json { render "/welcome", status: :created, location: @user }
       else
         format.html { render :new }
